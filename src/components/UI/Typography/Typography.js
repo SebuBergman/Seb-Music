@@ -1,10 +1,10 @@
 import { styled } from "styled-components";
 
 export const MainTitle = styled.h1`
-    font-family: ${({ theme }) => theme.fonts.poppins}, sans-serif;
-    font-weight: ${({ theme }) => theme.fontWeights.bold};
-    font-size: 60px;
-    line-height: 90px;
+  font-family: ${({ theme }) => theme.fonts.poppins}, sans-serif;
+  font-weight: ${({ theme }) => theme.fontWeights.bold};
+  font-size: 60px;
+  line-height: 90px;
 `;
 
 export const SectionTitle = styled.h2`
