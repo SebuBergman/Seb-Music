@@ -1,14 +1,14 @@
 import DesktopRadioImage from "assets/images/radio-desktop.png";
 import { Play } from "components/UI/Icons/Icons";
-import { ButtonText, MainTitle, Text } from "components/UI/Typography/Typography";
-import { PlayButton, TextWrapper, Wrapper } from "./styled";
+import { ButtonText, MainTitle } from "components/UI/Typography/Typography";
+import { PlayButton, TextWrapper, Wrapper, HeroText } from "./styled";
 
 function Hero() {
   return (
     <Wrapper>
       <TextWrapper>
         <MainTitle>Radio</MainTitle>
-        <Text>Listen to our radio. We will play a perfect soundtrack across devices</Text>
+        <HeroText>Listen to our radio. We will play a perfect soundtrack across devices</HeroText>
         <PlayButton>
           <Play />
           <ButtonText>Play</ButtonText>
