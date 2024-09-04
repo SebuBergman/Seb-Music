@@ -1,4 +1,4 @@
-import { SubText } from "components/UI/Typography/Typography";
+import { SubText, Text } from "components/UI/Typography/Typography";
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
@@ -24,6 +24,7 @@ export const TrackInfoTextWrapper = styled.div`
   display: flex;
   gap: 10px;
   flex-direction: column;
+  padding-right: 15px;
 `;
 
 export const TrackImage = styled.img`
@@ -32,7 +33,20 @@ export const TrackImage = styled.img`
   border-radius: 15px;
 `;
 
+export const TrackTitle = styled(Text)`
+  display: -webkit-box;
+  overflow: hidden;
+  line-clamp: 1;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+`;
+
 export const ArtistName = styled(SubText)`
+  display: -webkit-box;
+  overflow: hidden;
+  line-clamp: 1;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
   color: ${({ theme }) => theme.colors.secondaryGrey};
 `;
 
@@ -58,6 +72,7 @@ export const VolumeWrapper = styled.div`
 `;
 
 export const TrackTime = styled(SubText)`
+  width: 80px;
   margin: 0 20px;
   color: ${(props) => (props.grey ? props.theme.colors.secondaryGrey : "inherit")};
 `;

@@ -1,27 +1,47 @@
+import { useContext } from "react";
 import PropTypes from "prop-types";
 import { SubText } from "components/UI/Typography/Typography";
 import TrackRow from "./TrackRow";
 import { TableHead, Table, TableHeading, TableHeadingTime, Line } from "./styled";
+import { actions } from "context/actions";
+import { PlayerContext, PlayerDispatchContext } from "context/playerContext";
+import Skeleton from "react-loading-skeleton";
 
 function TracksTable({ tracks, isLoading }) {
+  const dispatch = useContext(PlayerDispatchContext);
+  const { track, isPlaying } = useContext(PlayerContext);
+
+  const handleTrackClick = (clickedTrack) => {
+    if (track?.id === clickedTrack.id) {
+      dispatch({ type: actions.TOGGLE_PLAY });
+    } else {
+      dispatch({
+        type: actions.SET_TRACKS_DATA,
+        track: clickedTrack,
+        tracks: tracks,
+        isPlaying: true,
+      });
+    }
+  };
+
   return (
     <Table cellSpacing={0}>
       <TableHead>
         <tr>
-          <TableHeading>
-            <SubText>#</SubText>
+          <TableHeading first={1}>
+            <SubText>{isLoading ? <Skeleton width={25} /> : "#"}</SubText>
           </TableHeading>
           <TableHeading>
-            <SubText>Song name</SubText>
+            <SubText>{isLoading ? <Skeleton /> : "Song Name"}</SubText>
           </TableHeading>
           <TableHeadingTime>
-            <SubText>Time</SubText>
+            <SubText>{isLoading ? <Skeleton /> : "Time"}</SubText>
           </TableHeadingTime>
           <TableHeading>
-            <SubText>Album name</SubText>
+            <SubText>{isLoading ? <Skeleton /> : "Album name"}</SubText>
           </TableHeading>
           <TableHeading>
-            <SubText>Action</SubText>
+            <SubText>{isLoading ? <Skeleton /> : "Action"}</SubText>
           </TableHeading>
         </tr>
       </TableHead>
@@ -30,7 +50,15 @@ function TracksTable({ tracks, isLoading }) {
           <Line colSpan={5} />
         </tr>
         {!isLoading &&
-          tracks?.map((track, index) => <TrackRow key={track.id} track={track} index={index} />)}
+          tracks?.map((currentTrack, index) => (
+            <TrackRow
+              isPlaying={tracks?.id === currentTrack.id && isPlaying}
+              onClick={handleTrackClick}
+              key={currentTrack.id}
+              track={currentTrack}
+              index={index}
+            />
+          ))}
         {isLoading && [...Array(9).keys()].map((num) => <TrackRow key={num} index={num} />)}
       </tbody>
     </Table>
