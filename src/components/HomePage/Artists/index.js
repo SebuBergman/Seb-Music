@@ -2,13 +2,13 @@ import PropTypes from "prop-types";
 import Skeleton from "react-loading-skeleton";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Wrapper, ArtistWrapper, ArtistSkeletonWrapper, ArtistLoaderWrapper } from "./styled";
+import { Wrapper, ArtistsWrapper, ArtistSkeletonWrapper, ArtistLoaderWrapper } from "./styled";
 import ArtistCard from "./ArtistCard";
 
 function Artists({ isLoading, artists }) {
   return (
     <Wrapper>
-      <ArtistWrapper>
+      <ArtistsWrapper>
         {isLoading &&
           [...Array(8).keys()].map((num) => (
             <ArtistLoaderWrapper key={num}>
@@ -19,12 +19,12 @@ function Artists({ isLoading, artists }) {
         <Swiper slidePerView="auto" spaceBetween={20} modules={[Pagination]}>
           {!isLoading &&
             artists?.map((genre) => (
-              <SwiperSlide key={genre.id} style={{ width: "auto" }}>
+              <SwiperSlide key={genre.id} style={{ width: "auto", flexShrink: 1 }}>
                 <ArtistCard name={genre.name} image={genre.picture_medium} />
               </SwiperSlide>
             ))}
         </Swiper>
-      </ArtistWrapper>
+      </ArtistsWrapper>
     </Wrapper>
   );
 }

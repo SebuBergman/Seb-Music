@@ -1,26 +1,11 @@
 import PropTypes from "prop-types";
 import { SubText } from "components/UI/Typography/Typography";
-import { Heart } from "components/UI/Icons/Icons";
-import { formatSecondsToMSS } from "utils/time";
-import {
-  TableHead,
-  Table,
-  TableHeading,
-  TableData,
-  TrackInfo,
-  TrackInfoTextWrapper,
-  TrackInfoImage,
-  TrackTitle,
-  TrackSubText,
-  SongNumberText,
-  StyledIconButton,
-  TableHeadingTime,
-  Line,
-} from "./styled";
+import TrackRow from "./TrackRow";
+import { TableHead, Table, TableHeading, TableHeadingTime, Line } from "./styled";
 
-function TracksTable({ tracks }) {
+function TracksTable({ tracks, isLoading }) {
   return (
-    <Table>
+    <Table cellSpacing={0}>
       <TableHead>
         <tr>
           <TableHeading>
@@ -44,31 +29,9 @@ function TracksTable({ tracks }) {
         <tr>
           <Line colSpan={5} />
         </tr>
-        {tracks?.map((track, index) => (
-          <tr key={track.id}>
-            <TableData>
-              <SongNumberText>{String(index + 1).padStart(2, "0")}</SongNumberText>
-            </TableData>
-            <TrackInfo>
-              <TrackInfoImage src={track.album.cover} alt={`${track.album.name}'s cover`} />
-              <TrackInfoTextWrapper>
-                <TrackTitle>{track.title}</TrackTitle>
-                <TrackSubText>{track.artist.name}</TrackSubText>
-              </TrackInfoTextWrapper>
-            </TrackInfo>
-            <TableData>
-              <SubText>{formatSecondsToMSS(track.duration)}</SubText>
-            </TableData>
-            <TableData>
-              <TrackSubText>{track.album.title}</TrackSubText>
-            </TableData>
-            <TableData>
-              <StyledIconButton width={25} height={25}>
-                <Heart />
-              </StyledIconButton>
-            </TableData>
-          </tr>
-        ))}
+        {!isLoading &&
+          tracks?.map((track, index) => <TrackRow key={track.id} track={track} index={index} />)}
+        {isLoading && [...Array(9).keys()].map((num) => <TrackRow key={num} index={num} />)}
       </tbody>
     </Table>
   );
@@ -90,6 +53,7 @@ TracksTable.propTypes = {
       }),
     }),
   ),
+  isLoading: PropTypes.bool,
 };
 
 export default TracksTable;

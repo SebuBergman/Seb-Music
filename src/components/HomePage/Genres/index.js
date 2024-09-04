@@ -38,8 +38,8 @@ function Genres() {
         setIsLoading(true);
         const data = await loadGenres();
         setGenres(data);
-      } catch (error) {
-        toast.error(error.message);
+      } catch (err) {
+        toast.error(err.message);
       } finally {
         setIsLoading(false);
       }
@@ -72,11 +72,11 @@ function Genres() {
               borderRadius={25}
             />
           ))}
-        <Swiper ref={sliderRef} sliderPerView="auto" spaceBetween={20} modules={[Pagination]}>
+        <Swiper ref={sliderRef} slidesPerView="auto" spaceBetween={20} modules={[Pagination]}>
           {!isLoading &&
             genres?.map((genre) => (
               <SwiperSlide key={genre.id} style={{ width: "auto" }}>
-                <GenreCard genre={genre.name} backgroundImage={genre.picture_medium} />
+                <GenreCard name={genre.name} backgroundImage={genre.picture_medium} />
               </SwiperSlide>
             ))}
         </Swiper>

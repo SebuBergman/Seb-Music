@@ -20,8 +20,7 @@ export const TitleRow = styled.div`
 export const ButtonsWrapper = styled.div`
   display: flex;
   align-items: center;
-  width: 100%;
-  min-height: 116px;
+  gap: 10px;
 `;
 
 export const GenresWrapper = styled.div`

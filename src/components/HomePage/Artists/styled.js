@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   margin-top: 35px;
 `;
 
-export const ArtistWrapper = styled.div`
+export const ArtistsWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
