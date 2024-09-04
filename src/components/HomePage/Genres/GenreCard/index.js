@@ -1,11 +1,10 @@
 import PropTypes from "prop-types";
-import { SectionSubtitle } from "components/UI/Typography/Typography";
-import { Wrapper } from "./styled";
+import { Wrapper, GenreName } from "./styled";
 
-function GenreCard({ backgroundImage, name}) {
+function GenreCard({ backgroundImage, name }) {
   return (
     <Wrapper backgroundImage={backgroundImage}>
-      <SectionSubtitle>{name}</SectionSubtitle>
+      <GenreName>{name}</GenreName>
     </Wrapper>
   );
 }

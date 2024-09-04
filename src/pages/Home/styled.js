@@ -16,3 +16,7 @@ export const TrendsAndArtistsSection = styled.section`
 export const GreyTitle = styled(SectionSubtitle)`
   color: ${({ theme }) => theme.colors.secondaryGrey};
 `;
+
+export const StyledAside = styled.aside`
+  margin-left: 90px;
+`;

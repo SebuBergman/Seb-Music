@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
+import { toast } from "react-toastify";
 import Skeleton from "react-loading-skeleton";
-import axios from "axios";
+import { loadGenres } from "services/api";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { ArrowLeft, ArrowRight } from "components/UI/Icons/Icons";
@@ -22,21 +23,26 @@ function Genres() {
   const sliderRef = useRef(null);
 
   const handlePrev = () => {
-    if (!sliderRef.current ) return;
+    if (!sliderRef.current) return;
     sliderRef.current.swiper.slidePrev();
   };
 
   const handleNext = () => {
-    if (!sliderRef.current ) return;
+    if (!sliderRef.current) return;
     sliderRef.current.swiper.slideNext();
   };
 
   useEffect(() => {
     const loadData = async () => {
-      setIsLoading(true);
-      const data = await axios.get("/genre");
-      setGenres(data.data.data.filter((genre) => genre.name.toLowerCase() !== "all"));
-      setIsLoading(false);
+      try {
+        setIsLoading(true);
+        const data = await loadGenres();
+        setGenres(data);
+      } catch (error) {
+        toast.error(error.message);
+      } finally {
+        setIsLoading(false);
+      }
     };
 
     loadData();
@@ -57,7 +63,7 @@ function Genres() {
       </TitleRow>
       <GenresWrapper>
         {isLoading &&
-          [1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
+          [...Array(8).keys()].map((num) => (
             <Skeleton
               wrapper={GenreSkeletonWrapper}
               key={num}
@@ -65,19 +71,17 @@ function Genres() {
               width={220}
               borderRadius={25}
             />
-          ))
-        }
+          ))}
         <Swiper ref={sliderRef} sliderPerView="auto" spaceBetween={20} modules={[Pagination]}>
-        {!isLoading &&
-          genres?.map((genre) => (
-            <SwiperSlide key={genre.id} style={{ width: "auto" }}>
-              <GenreCard genre={genre.name} backgroundImage={genre.picture_medium} />
-            </SwiperSlide>
-          ))
-        }
+          {!isLoading &&
+            genres?.map((genre) => (
+              <SwiperSlide key={genre.id} style={{ width: "auto" }}>
+                <GenreCard genre={genre.name} backgroundImage={genre.picture_medium} />
+              </SwiperSlide>
+            ))}
         </Swiper>
       </GenresWrapper>
-    </Wrapper>        
+    </Wrapper>
   );
 }
 

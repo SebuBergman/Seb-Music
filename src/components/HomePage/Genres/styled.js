@@ -29,6 +29,7 @@ export const GenresWrapper = styled.div`
   align-items: center;
   width: 100%;
   min-height: 116px;
+  gap: 20px;
 `;
 
 export const GenreSkeletonWrapper = styled.div`

@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { toast } from "react-toastify";
+import { loadCharts } from "services/api";
 import { SectionTitle } from "components/UI/Typography/Typography";
 import { Hero, Genres, Artists } from "components/HomePage";
-import { ContentWrapper, GreyTitle, TrendsAndArtistsSection } from "./styled";
+import TracksTable from "components/TracksTable";
+import { ContentWrapper, GreyTitle, TrendsAndArtistsSection, StyledAside } from "./styled";
 
 // Import Swiper styles
 import "swiper/css";
@@ -14,10 +16,15 @@ function Home() {
 
   useEffect(() => {
     const loadData = async () => {
-      setIsLoading(true);
-      const data = await axios.get("/chart");
-      setChart(data.data);
-      setIsLoading(false);
+      try {
+        setIsLoading(true);
+        const data = await loadCharts();
+        setChart(data);
+      } catch (err) {
+        toast.error(err.message);
+      } finally {
+        setIsLoading(false);
+      }
     };
 
     loadData();
@@ -31,13 +38,13 @@ function Home() {
         <div>
           <GreyTitle>Global</GreyTitle>
           <SectionTitle>Trending right now</SectionTitle>
-          <div>Songs table</div>
+          <TracksTable tracks={chart?.tracks?.data} />
         </div>
-        <aside>
+        <StyledAside>
           <GreyTitle>Global</GreyTitle>
           <SectionTitle>Top Artists</SectionTitle>
-          <Artists isLoading={isLoading} artist={chart?.artists.data} />
-        </aside>
+          <Artists isLoading={isLoading} artist={chart?.artists?.data} />
+        </StyledAside>
       </TrendsAndArtistsSection>
     </ContentWrapper>
   );
