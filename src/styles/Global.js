@@ -19,6 +19,11 @@ export const GlobalStyles = styled.createGlobalStyle`
     background-color: ${({ theme }) => theme.colors.black};
   }
 
+  a {
+    color: inherit;
+    text-decoration: inherit;
+  }
+
   /* Inherit fonts for inputs and buttons */
   input,
   button,
