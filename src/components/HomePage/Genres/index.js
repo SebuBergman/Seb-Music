@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import Skeleton from "react-loading-skeleton";
 import { loadGenres } from "services/api";
@@ -76,7 +77,9 @@ function Genres() {
           {!isLoading &&
             genres?.map((genre) => (
               <SwiperSlide key={genre.id} style={{ width: "auto" }}>
-                <GenreCard name={genre.name} backgroundImage={genre.picture_medium} />
+                <Link to={`/genres/${genre.id}`}>
+                  <GenreCard name={genre.name} backgroundImage={genre.picture_medium} />
+                </Link>
               </SwiperSlide>
             ))}
         </Swiper>
