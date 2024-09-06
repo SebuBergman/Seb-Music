@@ -1,3 +1,5 @@
+# Project created as part of Zacker Academy 16 week course
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
