@@ -7,6 +7,8 @@ import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { ArrowLeft, ArrowRight } from "components/UI/Icons/Icons";
 import { SectionSubtitle } from "components/UI/Typography/Typography";
+import { breakpoints } from "styles/BreakPoints";
+import { useWindowSize } from "hooks/useWindowSize";
 import GenreCard from "./GenreCard";
 import {
   Wrapper,
@@ -18,6 +20,7 @@ import {
 } from "./styled";
 
 function Genres() {
+  const { width } = useWindowSize();
   const [genres, setGenres] = useState();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -68,12 +71,17 @@ function Genres() {
             <Skeleton
               wrapper={GenreSkeletonWrapper}
               key={num}
-              height={116}
-              width={220}
+              height={width < breakpoints.md ? 95 : 116}
+              width={width < breakpoints.md ? 137 : 220}
               borderRadius={25}
             />
           ))}
-        <Swiper ref={sliderRef} slidesPerView="auto" spaceBetween={20} modules={[Pagination]}>
+        <Swiper
+          ref={sliderRef}
+          slidesPerView="auto"
+          spaceBetween={width < breakpoints.md ? 9 : 20}
+          modules={[Pagination]}
+        >
           {!isLoading &&
             genres?.map((genre) => (
               <SwiperSlide key={genre.id} style={{ width: "auto" }}>

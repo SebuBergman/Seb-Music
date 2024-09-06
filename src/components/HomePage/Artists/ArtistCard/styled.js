@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Text } from "components/UI/Typography/Typography";
+import { device } from "styles/BreakPoints";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -8,6 +9,11 @@ export const Wrapper = styled.div`
   flex-direction: column;
   gap: 14px;
   cursor: pointer;
+
+  ${device.md} {
+    height: 75px;
+    width: 75px;
+  }
 `;
 
 export const Image = styled.img`
@@ -19,4 +25,10 @@ export const Image = styled.img`
 export const ArtistName = styled(Text)`
   max-width: 140px;
   text-align: center;
+
+  ${device.md} {
+    width: 75px;
+    font-size: 16px;
+    line-height: 19px;
+  }
 `;
