@@ -9,17 +9,17 @@ export const Wrapper = styled.div`
   flex-direction: column;
   gap: 14px;
   cursor: pointer;
-
-  ${device.md} {
-    height: 75px;
-    width: 75px;
-  }
 `;
 
 export const Image = styled.img`
   height: 95px;
   width: 95px;
   border-radius: 50%;
+
+  ${device.md} {
+    height: 75px;
+    width: 75px;
+  }
 `;
 
 export const ArtistName = styled(Text)`

@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import Skeleton from "react-loading-skeleton";
+import { Link } from "react-router-dom";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Wrapper, ArtistsWrapper, ArtistSkeletonWrapper, ArtistLoaderWrapper } from "./styled";
@@ -23,15 +24,23 @@ function Artists({ isLoading, artists }) {
                 height={isMobileLayout ? 75 : 95}
                 width={isMobileLayout ? 75 : 95}
                 circle
+                style={{ margin: "0 auto" }}
               />
               <Skeleton height={isMobileLayout ? 19 : 27} />
             </ArtistLoaderWrapper>
           ))}
-        <Swiper slidePerView="auto" spaceBetween={20} modules={[Pagination]}>
+        <Swiper
+          slidePerView="auto"
+          spaceBetween={20}
+          modules={[Pagination]}
+          style={{ marginLeft: 0 }}
+        >
           {!isLoading &&
-            artists?.map((genre) => (
-              <SwiperSlide key={genre.id} style={{ width: "auto", flexShrink: 1 }}>
-                <ArtistCard name={genre.name} image={genre.picture_medium} />
+            artists?.map((artist) => (
+              <SwiperSlide key={artist.id} style={{ width: "auto" }}>
+                <Link to={`/artists/${artist.id}`}>
+                  <ArtistCard name={artist.name} image={artist.picture_medium} />
+                </Link>
               </SwiperSlide>
             ))}
         </Swiper>

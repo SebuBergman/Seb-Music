@@ -6,8 +6,7 @@ import { device } from "styles/BreakPoints";
 export const TrendsAndArtistsSection = styled.section`
   display: grid;
   grid-template-columns: 65% 35%;
-  gap: 90px;
-  padding-bottom: 135px;
+  padding-bottom: calc(${PLAYER_HEIGHT}px + 50px);
   overflow: hidden;
 
   ${device.xl} {
@@ -15,6 +14,7 @@ export const TrendsAndArtistsSection = styled.section`
     flex-direction: column;
     gap: 45px;
   }
+
   ${device.lg} {
     padding-bottom: calc(${MOBILE_PLAYER_HEIGHT}px + 50px);
   }

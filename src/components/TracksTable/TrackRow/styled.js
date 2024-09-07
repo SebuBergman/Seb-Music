@@ -7,6 +7,7 @@ export const StyledTrackRow = styled.tr`
   cursor: pointer;
   border-radius: 15px;
   transition: background-color 0.2s ease-in-out;
+
   &:hover {
     .text {
       display: none;
@@ -16,11 +17,13 @@ export const StyledTrackRow = styled.tr`
     }
     background-color: ${({ theme }) => theme.colors.lightWhite};
   }
+
   td:first-child {
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     padding-left: 15px;
   }
+
   td:last-child {
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;

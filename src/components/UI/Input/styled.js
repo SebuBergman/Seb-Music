@@ -14,6 +14,7 @@ export const StyledInput = styled.input`
   background-image: ${(props) => `url(${props.icon})`};
   background-repeat: no-repeat;
   background-position: 17px 21px;
+
   &:focus {
     border: 2px solid ${({ theme }) => theme.colors.white};
     outline: none;

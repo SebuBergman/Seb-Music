@@ -6,6 +6,7 @@ import TracksTable from "components/TracksTable";
 import { Music } from "components/UI/Icons/Icons";
 import { MainTitle, SmallText } from "components/UI/Typography/Typography";
 import { loadGenre } from "services/api";
+import { theme } from "styles/Theme";
 import { SongsCountWrapper, TextWrapper, Wrapper } from "./styled";
 
 function Genre() {
@@ -33,7 +34,7 @@ function Genre() {
       <TextWrapper>
         <MainTitle>{genre?.genre?.name || <Skeleton width={200} />}</MainTitle>
         <SongsCountWrapper>
-          <Music />
+          <Music color={theme.colors.secondaryGrey} />
           <SmallText>
             {isLoading ? <Skeleton width={40} /> : `${genre?.tracks?.length} songs`}
           </SmallText>

@@ -16,7 +16,7 @@ export const Wrapper = styled.section`
   height: 382px;
   background-color: ${({ theme }) => theme.colors.purple};
 
-  media (max-width: ${HERO_IMAGE_HIDDEN_BREAKPOINT}px) {
+  @media (max-width: ${HERO_IMAGE_HIDDEN_BREAKPOINT}px) {
     align-items: center;
     height: 305px;
     text-align: center;
@@ -31,6 +31,7 @@ export const TextWrapper = styled.div`
   ${device.xl} {
     padding-left: 70px;
   }
+
   @media (max-width: ${HERO_IMAGE_HIDDEN_BREAKPOINT}px) {
     width: 100%;
     padding: 0;
@@ -52,16 +53,16 @@ export const HeroTitleText = styled(MainTitle)`
 
 export const HeroText = styled(Text)`
   max-width: 274px;
-
-  @media (max-width: ${HERO_IMAGE_HIDDEN_BREAKPOINT}px) {
-    margin: 30px auto;
-    width: 100%;
-    justify-content: center;
-  }
 `;
 
 export const PlayButton = styled(Button)`
   display: flex;
   gap: 14px;
   align-items: center;
+
+  @media (max-width: ${HERO_IMAGE_HIDDEN_BREAKPOINT}px) {
+    margin: 30px auto;
+    width: 100%;
+    justify-content: center;
+  }
 `;
