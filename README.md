@@ -1,4 +1,4 @@
-# Project created as part of Zacker Academy 16 week course
+# Project created as part of Zacker Academy program
 
 # Getting Started with Create React App
 
